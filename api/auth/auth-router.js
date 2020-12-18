@@ -6,7 +6,11 @@ const { hasValues, hasUserPass, userIsValid } = require('../middleware/auth-midd
 router.post('/register', hasValues, async (req, res) => {
   try {
     const newUser = await User.register(req.body)
-    res.status(201).json(newUser)
+    if(typeof newUser === 'string') {
+      res.status(400).json(newUser)
+    } else {
+      res.status(201).json(newUser)
+    }
   } catch(err) {
     res.status(500).json({message:err.message})
   }
