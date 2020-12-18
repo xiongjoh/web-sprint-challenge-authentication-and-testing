@@ -1,10 +1,11 @@
 const router = require('express').Router();
+const User = require('./auth-model')
 
 const { hasValues, hasUserPass, userIsValid } = require('../middleware/auth-middlewares')
 
 router.post('/register', hasValues, async (req, res) => {
   try {
-    const newUser = await userIsValid.register(req.body)
+    const newUser = await User.register(req.body)
     res.status(201).json(newUser)
   } catch(err) {
     res.status(500).json({message:err.message})

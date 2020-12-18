@@ -3,7 +3,7 @@ const db = require('../../data/dbConfig')
 module.exports = {
     async register(user) {
         try {
-            const [id] = db('users').insert(user, 'id')
+            const [id] = await db('users').insert(user, 'id')
             return db('users').where({id}).first()
         } catch (err){
             return `username taken`
