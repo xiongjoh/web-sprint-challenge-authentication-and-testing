@@ -39,7 +39,7 @@ router.post('/register', hasValues, async (req, res) => {
 router.post('/login', hasUserPass, userIsValid, (req, res) => {
   try {
     const { username, token } = req.body
-    res.status(200).json({username:`welcome, ${username}`, token})
+    res.status(200).json({message:`welcome, ${username}`, token})
   } catch(err) {
     res.status(500).json(`something went wrong`)
   }
